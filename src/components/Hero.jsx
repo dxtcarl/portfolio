@@ -1,4 +1,5 @@
 import { profile, heroLine, statLine } from '../content'
+import { asset } from '../lib/asset'
 import Reveal from './Reveal'
 
 const specRows = [
@@ -69,7 +70,7 @@ export default function Hero() {
               <div className="p-4">
                 {profile.photo ? (
                   <img
-                    src={profile.photo}
+                    src={asset(profile.photo)}
                     alt={`Portrait of ${profile.name}`}
                     width={1000}
                     height={1250}

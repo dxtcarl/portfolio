@@ -1,4 +1,5 @@
 import { bio, skills, profile, setupPhotos } from '../content'
+import { asset } from '../lib/asset'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
 
@@ -66,7 +67,7 @@ export default function About() {
             {setupPhotos.map((photo) => (
               <figure key={photo.src} className="group relative overflow-hidden border border-line bg-ink-2/30">
                 <img
-                  src={photo.src}
+                  src={asset(photo.src)}
                   alt={photo.alt}
                   width={900}
                   height={1200}

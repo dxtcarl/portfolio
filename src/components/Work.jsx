@@ -1,4 +1,5 @@
 import { projects } from '../content'
+import { asset } from '../lib/asset'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
 
@@ -41,7 +42,7 @@ function PhoneStrip({ images, compact = false }) {
         >
           <div className="rounded-[20px] border border-line bg-[#141210] p-[3px] shadow-[0_22px_45px_-26px_rgba(0,0,0,0.95)] md:rounded-[24px] md:p-1">
             <img
-              src={img.src}
+              src={asset(img.src)}
               alt={img.alt}
               width={738}
               height={1600}

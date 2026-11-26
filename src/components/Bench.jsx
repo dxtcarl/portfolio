@@ -1,4 +1,5 @@
 import { benchJobs, benchPhoto } from '../content'
+import { asset } from '../lib/asset'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
 
@@ -16,7 +17,7 @@ export default function Bench() {
         <Reveal className="mt-10 md:mt-14">
           <figure className="relative overflow-hidden border border-line">
             <img
-              src={benchPhoto.src}
+              src={asset(benchPhoto.src)}
               alt={benchPhoto.alt}
               width={1200}
               height={750}

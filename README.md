@@ -80,6 +80,20 @@ vercel        # first run: log in, accept the defaults
 vercel --prod # publishes the live URL
 ```
 
+## Publish on GitHub Pages (optional second host)
+
+The repo has `.github/workflows/deploy.yml`. On every push to `main` it:
+
+1. runs `npm ci`
+2. runs `npm run build` with `GITHUB_PAGES=1` (so the base path becomes `/portfolio/`)
+3. uploads `dist/` as a Pages artifact and deploys it
+
+Live at **https://dxtcarl.github.io/portfolio/**.
+
+Why the base path matters: Pages serves a project site from `/<repo>/`, so `/shots/x.webp`
+would 404 there. `src/lib/asset.js` prefixes every image with `import.meta.env.BASE_URL`,
+which is `/` on Vercel and `/portfolio/` on Pages — one codebase, both hosts.
+
 ## Files
 
 ```
