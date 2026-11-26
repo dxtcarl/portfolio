@@ -71,7 +71,9 @@ export default function Hero() {
                   <img
                     src={profile.photo}
                     alt={`Portrait of ${profile.name}`}
-                    className="aspect-[4/5] w-full border border-line object-cover grayscale-[35%] contrast-[1.05]"
+                    width={1000}
+                    height={1250}
+                    className="h-[380px] w-full border border-line object-cover object-[50%_10%] grayscale-[15%] contrast-[1.04] transition-[filter] duration-500 hover:grayscale-0"
                   />
                 ) : (
                   <div className="flex aspect-[3/2] w-full flex-col items-center justify-center gap-2 border border-dashed border-line bg-ink/60 px-4 text-center">

@@ -14,9 +14,9 @@ export const profile = {
   email: 'lozanodexter981@gmail.com',
   phone: '09666585925',
 
-  // Drop a photo in /public (e.g. /public/photo.jpg) then write '/photo.jpg'
-  // here. While this is null the site shows a framed placeholder box instead.
-  photo: null,
+  // Portrait shown in the hero spec sheet. Drop a new file in /public and
+  // point this at it; set it to null to show the framed placeholder again.
+  photo: '/photo.webp',
 
   // Small pill in the header: "Open for work" vs "Not taking work".
   available: true,
