@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b0a08;
+  --color-ink-2: #12100d;
+  --color-paper: #f4ecdc;
+  --color-muted: #a89e8c;
+  --color-dim: #8a7f6f;
+  --color-amber: #f0a73a;
+  --color-rust: #c4552f;
+  --color-moss: #86b48c;
+  --color-line: #2b2621;
+
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-body: "Newsreader", ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  ::selection {
+    background: var(--color-amber);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 3px;
+  }
+
+  section[id] {
+    scroll-margin-top: 72px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* ---- retro textures -------------------------------------------------- */
+
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgba(244, 236, 220, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 236, 220, 0.055) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.045) 0px,
+    rgba(255, 255, 255, 0.045) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* ---- type helpers ---------------------------------------------------- */
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+}
+
+.body-copy {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+/* ---- retro hard-shadow buttons --------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.35rem;
+  min-height: 44px;
+  border: 1px solid var(--color-amber);
+  color: var(--color-amber);
+  background: transparent;
+  box-shadow: 4px 4px 0 0 rgba(240, 167, 58, 0.22);
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background-color 140ms ease,
+    color 140ms ease;
+}
+
+.btn:hover {
+  background: var(--color-amber);
+  color: var(--color-ink);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 rgba(240, 167, 58, 0.32);
+}
+
+.btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 0 rgba(240, 167, 58, 0.4);
+}
+
+.btn--ghost {
+  border-color: #3d372e;
+  color: var(--color-paper);
+  box-shadow: 4px 4px 0 0 rgba(244, 236, 220, 0.07);
+}
+
+.btn--ghost:hover {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-paper);
+  box-shadow: 6px 6px 0 0 rgba(244, 236, 220, 0.14);
+}
+
+/* ---- marquee --------------------------------------------------------- */
+
+@keyframes slide-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: slide-x 44s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---- reveal on scroll ------------------------------------------------ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 620ms ease,
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn,
+  .btn:hover,
+  .btn:active {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- details --------------------------------------------------------- */
+
+.rule {
+  height: 1px;
+  background: var(--color-line);
+}
+
+.dot-live {
+  position: relative;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--color-moss);
+  box-shadow: 0 0 0 3px rgba(134, 180, 140, 0.16);
+}
